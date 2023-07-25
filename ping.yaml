@@ -1,16 +1,13 @@
 ---
 - name: Ping All hosts
-  hosts:
-    host1: srv-rhel-01
-    host2: host-fin
-
+  hosts: srv-01
   gather_facts: no
   tasks:
     - name: Ping each host
-      command: ping -c 2 "{{ host2 }}"
+      command: ping -c 2 "{{ inventory_hostname }}"
       run_once: true
       loop: "{{ ansible_play_hosts_all }}"
-      delegate_to: "{{ host1 }}"
+      delegate_to: localhost
       register: ping_result
       failed_when: false
 
