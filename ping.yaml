@@ -14,10 +14,10 @@
   failed_when: false
   register: router_ping
 
-- name: Show Return Code
-    debug:
-      msg: "{{ router_ping.rc }}"
-  run_once: true
+#- name: Show Return Code
+#    debug:
+#      msg: "{{ router_ping.rc }}"
+#  run_once: true
 
 - name: Format it a bit
       # Note: the docs for 'copy' say don't do this, to use template instead,
