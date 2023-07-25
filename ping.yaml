@@ -1,6 +1,6 @@
 ---
 - name: Ping All hosts
-  hosts:
+  hosts: srv-01
   gather_facts: no
   tasks:
     - name: Ping each host
