@@ -13,3 +13,10 @@
       loop: "{{ ansible_play_hosts_all }}"
       delegate_to: "{{ host1 }}"
       register: ping_result
+      failed_when: false
+
+
+    - name: How did we do?
+      ansible.builtin.debug:
+        msg: "{{ ping_result.results[0] }}"
+      run_once: true
