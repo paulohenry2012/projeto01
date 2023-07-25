@@ -9,7 +9,7 @@
   tasks:
 
   - name: ICMP ping from Control Node to Remote Node
-    delegate_to: "{{ host1 }}" # or controlnode.example.com
+    delegate_to: localhost # or controlnode.example.com
     command: ping -c 2 "{{ inventory_hostname }}"
     # Because it is an reporting task
     loop: "{{ ansible_play_hosts_all }}"
