@@ -1,12 +1,16 @@
 ---
 - name: Ping All hosts
   hosts: all
+  roles:
+    - role: 
+      srv-01: "{{ groups['srv-01'] | list }}"
+      host-fin: "{{ groups['host-fin'] | list }}"
   gather_facts: no
   tasks:
     - name: Ping each host
-      command: ping -c 2 "{{ inventory_hostname }}"
+      command: ping -c 2 "{{ host-fin }}"
       run_once: true
-      loop: "{{ ansible_play_hosts_all }}"
+      loop: "{{ srv-01 }}"
       delegate_to: localhost
       register: ping_result
       failed_when: false
