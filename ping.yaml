@@ -1,9 +1,8 @@
 ---
 - name: Ping All hosts
   hosts:
-    - var:
-      host1: srv-rhel-01
-      host2: host-fin
+    host1: srv-rhel-01
+    host2: host-fin
 
   gather_facts: no
   tasks:
