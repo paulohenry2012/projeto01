@@ -23,7 +23,7 @@
       msg: "{{ router_ping.rc }}"
 
 ...
----
+
 - name: check reachable hosts
   hosts: all
   gather_facts: no
