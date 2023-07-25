@@ -2,8 +2,6 @@
 - hosts: all
   become: false
   gather_facts: false
-  var:
-    host1: srv-rhel-01
   tasks:
 
   - name: ICMP ping from Control Node to Remote Node
