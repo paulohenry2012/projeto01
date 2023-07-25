@@ -7,7 +7,7 @@
       ansible.builtin.command: ping -c1 "{{ inventory_hostname }}"
       run_once: true
       loop: "{{ ansible_play_hosts_all }}"
-      delegate_to: srv-rhel-01
+      delegate_to: localhost
       register: ping_result
       failed_when: false
 
