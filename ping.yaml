@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- nome: Ping All hosts
+  hosts: all
   become: false
   gather_facts: false
   var:
