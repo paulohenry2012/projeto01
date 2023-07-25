@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Ping each host
-      ansible.builtin.command: ping -c1 {{ inventory_hostname }}
+      command: ping -c1 "{{ inventory_hostname }}"
       run_once: true
       delegate_to: localhost
       register: ping_result
