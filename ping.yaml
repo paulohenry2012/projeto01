@@ -16,4 +16,4 @@
 
   - name: Show Return Code
     debug:
-      msg: "{{ router_ping.rc }}"
+      msg: "{{ router_ping.results[0] }}"
