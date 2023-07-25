@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-  gather_facts: false
+  gather_facts: no
   tasks:
 
 - name: ICMP ping from Control Node to Remote Node
@@ -9,8 +9,8 @@
   ansible.builtin.command: ping -c1 {{ inventory_hostname }}
   #loop: "{{ ansible_play_hosts_all }}"
   # Because it is an reporting task
-  changed_when: false 
-  check_mode: false
+  #changed_when: false 
+  #check_mode: false
   failed_when: false
   register: router_ping
 
