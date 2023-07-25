@@ -8,14 +8,14 @@
     
   tasks:
     - name: Ping each host
-    ansible.builtin.command: ping -c2 "{{ inventory_hostname }}"
-    run_once: true
-    loop: "{{ ansible_play_hosts_all }}"
-    delegate_to: "{{ host1 }}"
-    register: ping_result
-    failed_when: router_ping.rc == 1 or router_ping.rc > 2 # will result into success for rc 0 and rc 2
-    register: router_ping
-
+      ansible.builtin.command: ping -c2 "{{ inventory_hostname }}"
+      run_once: true
+      loop: "{{ ansible_play_hosts_all }}"
+      delegate_to: "{{ host1 }}"
+      register: ping_result
+#     failed_when: router_ping.rc == 1 or router_ping.rc > 2  
+#     will result into success for rc 0 and rc 2
+#     register: router_ping
 
 #  - name: ICMP ping from Control Node to Remote Node
 #    delegate_to: "{{ inventory_hostname }}" # or controlnode.example.com
@@ -26,10 +26,10 @@
 #    failed_when: router_ping.rc == 1 or router_ping.rc > 2 # will result into success for rc 0 and rc 2
 #    register: router_ping
 
-  - name: How did we do?
-    debug:
-      msg: "{{ router_ping.rc }}"
-    run_once: true
+#  - name: How did we do?
+#   debug:
+#      msg: "{{ ping_result.rc }}"
+#    run_once: true
 
   - name: Show Return Code
     debug:
