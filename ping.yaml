@@ -17,6 +17,11 @@
     failed_when: router_ping.rc == 1 or router_ping.rc > 2 # will result into success for rc 0 and rc 2
     register: router_ping
 
+  - name: How did we do?
+    ansible.builtin.debug:
+      msg: "{{ router_ping.results[0] }}"
+    run_once: true
+
   - name: Show Return Code
     debug:
       msg: "{{ router_ping.rc }}"
