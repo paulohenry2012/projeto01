@@ -19,7 +19,7 @@
 
   - name: How did we do?
     ansible.builtin.debug:
-      msg: "{{ router_ping.results[0] }}"
+      msg: "{{ router_ping.rc[0] }}"
     run_once: true
 
   - name: Show Return Code
