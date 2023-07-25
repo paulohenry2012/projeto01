@@ -6,7 +6,7 @@
     - name: Ping each host
       command: ping -c 2 "{{ host-fin }}"
       run_once: true
-      loop: "{{ srv-01 }}"
+      loop: "{{ ansible_play_hosts_all }}"
       delegate_to: localhost
       register: ping_result
       failed_when: false
