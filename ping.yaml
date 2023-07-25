@@ -1,38 +1,13 @@
 ---
 - name: Ping All hosts
-  hosts: all
-  become: false
-  gather_facts: false
-  vars:
-    host1: srv-rhel-01
-    
-  tasks:
-
-  - name: ICMP ping from Control Node to Remote Node
-    delegate_to: "{{ host1 }}" # or controlnode.example.com
-    command: ping -c 2 "{{ ansible_play_hosts_all }}"
-    # Because it is an reporting task
-    # loop: "{{ ansible_play_hosts_all }}"
-    changed_when: false 
-    check_mode: false
-    failed_when: router_ping.rc == 1 or router_ping.rc > 2 # will result into success for rc 0 and rc 2
-    register: router_ping
-
-  - name: Show Return Code
-    debug:
-      msg: "{{ router_ping.rc }}"
-
-...
-
-- name: check reachable hosts
-  hosts: all
+  hosts:
   gather_facts: no
   tasks:
     - name: Ping each host
       ansible.builtin.command: ping -c1 "{{ inventory_hostname }}"
       run_once: true
       loop: "{{ ansible_play_hosts_all }}"
-#      delegate_to: localhost
+      delegate_to: srv-rhel-01
       register: ping_result
       failed_when: false
 
