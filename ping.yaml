@@ -9,8 +9,8 @@
   tasks:
 
   - name: ICMP ping from Control Node to Remote Node
-    delegate_to: "{{ host1 }}" # or controlnode.example.com
-    command: ping -c 2 "{{ inventory_hostname }}"
+    delegate_to: "{{ inventory_hostname }}" # or controlnode.example.com
+    command: ping -c 2 "{{ host1 }}"
     # Because it is an reporting task
     changed_when: false 
     check_mode: false
