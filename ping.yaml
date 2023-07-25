@@ -8,7 +8,7 @@
   gather_facts: no
   tasks:
     - name: Ping each host
-      command: ping -c 2 "{{ item }}"
+      command: ping -c 2 "{{ host2 }}"
       run_once: true
       loop: "{{ ansible_play_hosts_all }}"
       delegate_to: "{{ host1 }}"
