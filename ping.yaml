@@ -1,6 +1,6 @@
 ---
 - name: Ping All hosts
-  hosts: host-01
+  hosts: srv-01
   become: false
   gather_facts: false
 #  var:
