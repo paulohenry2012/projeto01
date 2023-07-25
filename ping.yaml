@@ -3,8 +3,8 @@
   hosts: all
   roles:
     - role: 
-      srv-01: "{{ groups['srv-01'] | list }}"
-      host-fin: "{{ groups['host-fin'] | list }}"
+      srv-01: "{{ groups['srv-01'] | map('extract',hostvars,'ansible_host') | list }}"
+      host-fin: "{{ groups['host-fin'] | map('extract',hostvars,'ansible_host') | list }}"
   gather_facts: no
   tasks:
     - name: Ping each host
