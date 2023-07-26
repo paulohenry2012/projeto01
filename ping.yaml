@@ -21,7 +21,7 @@
         # and there are reasons, but this suffices for posting purposes.
         # The 'content:' below should be in your template.
         ansible.builtin.copy:
-          dest: "/tmp/teste-yaml/{{inventory_hostname}}.txt"
+          dest: "/tmp/teste-yaml/{{inventory_hostname}}-{{date +'%d-%m-%Y'}}.txt"
           content: |
             --- PING REPORT ---
             {% for pr in ping_result.results %}
