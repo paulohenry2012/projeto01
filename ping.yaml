@@ -1,19 +1,39 @@
 ---
-- hosts: "{{groups['host02']}}"
-  become: false
-  gather_facts: false
+- name: check reachable hosts
+  hosts: "{{groups['srv01']}}"
+  gather_facts: no
   tasks:
+      - name: Ping each host
+        ansible.builtin.command: ping -c1 "{{ item }}"
+        run_once: true
+        loop: "{{groups['host02']}}"
+      #delegate_to: localhost
+        register: ping_result
+        failed_when: false
 
-  - name: ICMP ping from Control Node to Remote Node
-    delegate_to: srv-rhel-01 # or controlnode.example.com
-    command: ping -c 1 "{{ item }}"
-    loop: "{{ ansible_play_hosts_all }}"
-    # Because it is an reporting task
-    changed_when: false 
-    check_mode: false
-    failed_when: router_ping.rc == 1 or router_ping.rc > 2 # will result into success for rc 0 and rc 2
-    register: router_ping
+      - name: How did we do?
+        ansible.builtin.debug:
+          msg: "{{ ping_result.results[0] }}"
+        run_once: true
 
-  - name: Show Return Code
-    debug:
-      msg: "{{ router_ping.rc[0] }}"
+      - name: Format it a bit
+      # Note: the docs for 'copy' say don't do this, to use template instead,
+      # and there are reasons, but this suffices for posting purposes.
+      # The 'content:' below should be in your template.
+        ansible.builtin.copy:
+        dest: "/tmp/teste-yaml/{{inventory_hostname}}.txt"
+        content: |
+          --- PING REPORT ---
+          {% for pr in ping_result.results %}
+          Host atual = {{ pr.item  }}
+          {{ pr.stdout_lines | first }}
+          {{ pr.stdout_lines[1] }}
+
+          {% endfor %}
+        run_once: true
+        delegate_to: localhost
+
+#    - name: Format cvs
+#      template: src=/tmp/teste-yaml/ping.txt dest=./to_nice_yaml.output>
+#      run_once: true
+#      delegate_to: localhost
