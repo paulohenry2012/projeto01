@@ -14,24 +14,8 @@
   failed_when: false
   register: router_ping
 
-#- name: Show Return Code
-#    debug:
-#      msg: "{{ router_ping.rc }}"
-#  run_once: true
-
-- name: "Format it a bit"
-      # Note: the docs for 'copy' say don't do this, to use template instead,
-      # and there are reasons, but this suffices for posting purposes.
-      # The 'content:' below should be in your template.
-  copy:
-  #  content: "{{router_ping.stdout[0]}"
-    dest: "/tmp/{{inventory_hostname}}.txt"
-    content: |
-          --- PING REPORT ---
-          {% for pr in router_ping.rc %}
-          {{ pr.stdout_lines | first }}
-          {{ pr.stdout_lines | last }}
-          
-          {% endfor %}
+- name: "Show Return Code"
+  debug:
+    msg: "{{ router_ping.rc }}"
   run_once: true
-  delegate_to: localhost
+
