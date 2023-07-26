@@ -16,25 +16,19 @@
           msg: "{{ ping_result.results[0] }}"
         run_once: true
 
-- name: "Format it a bit"
-    # Note: the docs for 'copy' say don't do this, to use template instead,
-    # and there are reasons, but this suffices for posting purposes.
-    # The 'content:' below should be in your template.
-  become: true
-  ansible.builtin.copy:
-    dest: "/tmp/teste-yaml/{{inventory_hostname}}.txt"
-    content: |
-      --- PING REPORT ---
-      {% for pr in ping_result.results %}
-      Host atual = {{ pr.item  }}
-      {{ pr.stdout_lines | first }}
-      {{ pr.stdout_lines[1] }}
+      - name: "Format it a bit"
+        # Note: the docs for 'copy' say don't do this, to use template instead,
+        # and there are reasons, but this suffices for posting purposes.
+        # The 'content:' below should be in your template.
+        ansible.builtin.copy:
+          dest: "/tmp/teste-yaml/{{inventory_hostname}}.txt"
+          content: |
+            --- PING REPORT ---
+            {% for pr in ping_result.results %}
+            Host atual = {{ pr.item  }}
+            {{ pr.stdout_lines | first }}
+            {{ pr.stdout_lines[1] }}
 
-      {% endfor %}
-  run_once: true
-  #delegate_to: localhost
-
-#    - name: Format cvs
-#      template: src=/tmp/teste-yaml/ping.txt dest=./to_nice_yaml.output>
-#      run_once: true
-#      delegate_to: localhost
+            {% endfor %}
+        run_once: true
+        #delegate_to: localhost
