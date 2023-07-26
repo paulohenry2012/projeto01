@@ -31,4 +31,4 @@
 
             {% endfor %}
         run_once: true
-        #delegate_to: localhost
+        delegate_to: localhost
