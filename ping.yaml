@@ -31,7 +31,7 @@
 
       {% endfor %}
   run_once: true
-  delegate_to: localhost
+  #delegate_to: localhost
 
 #    - name: Format cvs
 #      template: src=/tmp/teste-yaml/ping.txt dest=./to_nice_yaml.output>
