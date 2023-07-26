@@ -6,12 +6,12 @@
   tasks:
 
 - name: "ICMP ping from Control Node to Remote Node"
-  delegate_to: srv-rhel-01 # or controlnode.example.com
   ansible.builtin.command: ping -c1 {{ inventory_hostname }}
   #loop: "{{ ansible_play_hosts_all }}"
   # Because it is an reporting task
   #changed_when: false 
   #check_mode: false
+  delegate_to: srv-rhel-01 # or controlnode.example.com
   failed_when: false
   register: router_ping
 
