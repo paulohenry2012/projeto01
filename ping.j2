@@ -1,0 +1,5 @@
+{% for pr in ping_result.results %}
+Host = {{ pr.item  }}
+{{ pr.stdout_lines[1] }}
+
+{% endfor %}

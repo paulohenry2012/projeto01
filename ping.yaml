@@ -21,12 +21,10 @@
         # and there are reasons, but this suffices for posting purposes.
         # The 'content:' below should be in your template.
         ansible.builtin.copy:
-          dest: "/tmp/teste-yaml/{{inventory_hostname}}.txt"
+          dest: "/tmp/teste-yaml/{{groups['host02']}}.csv"
           content: |
-            --- PING REPORT ---
             {% for pr in ping_result.results %}
-            Host atual = {{ pr.item  }}
-            {{ pr.stdout_lines | first }}
+            Host = {{ pr.item  }}
             {{ pr.stdout_lines[1] }}
 
             {% endfor %}
