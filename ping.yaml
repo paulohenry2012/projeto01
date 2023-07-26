@@ -1,21 +1,20 @@
 ---
-- hosts: "{{groups['srv01'][1]}}"
+- hosts: all
   become: false
   gather_facts: false
+  var:
+    host1: srv-rhel-01
   tasks:
 
-- name: "ICMP ping from Control Node to Remote Node"
-  #delegate_to: srv-rhel-01 # or controlnode.example.com
-  ansible.builtin.command: ping -c1 "{{groups['host02']}}"
-  loop: "{{ ansible_play_hosts_all }}"
-  # Because it is an reporting task
-  #changed_when: false 
-  #check_mode: false
-  failed_when: false
-  register: router_ping
+  - name: ICMP ping from Control Node to Remote Node
+    delegate_to: localhost # or controlnode.example.com
+    command: ping -c 2 "{{ inventory_hostname }}"
+    # Because it is an reporting task
+    changed_when: false 
+    check_mode: false
+    failed_when: router_ping.rc == 1 or router_ping.rc > 2 # will result into success for rc 0 and rc 2
+    register: router_ping
 
-- name: "Show Return Code"
-  debug:
-    msg: "{{ router_ping.rc }}"
-  run_once: true
-
+  - name: Show Return Code
+    debug:
+      msg: "{{ router_ping.rc }}"
