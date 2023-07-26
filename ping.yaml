@@ -20,13 +20,8 @@
         # Note: the docs for 'copy' say don't do this, to use template instead,
         # and there are reasons, but this suffices for posting purposes.
         # The 'content:' below should be in your template.
-        ansible.builtin.copy:
+        ansible.builtin.template:
+          src: ping.j2
           dest: "/tmp/teste-yaml/{{inventory_hostname}}.csv"
-          content: |
-            {% for pr in ping_result.results %}
-            Host = {{ pr.item  }}
-            {{ pr.stdout_lines[1] }}
-
-            {% endfor %}
-        run_once: true
+#        run_once: true
         #delegate_to: localhost
