@@ -1,5 +1,5 @@
 {% for pr in ping_result.results %}
 Host = {{ pr.item  }}
-times = {{ pr.stdout_lines[1] | regex_search('time=[0-9]+') }}
+times = {{ pr.stdout_lines[1] | regex_search('^time=', multiline=True, ignorecase=True) }}
 
 {% endfor %}
