@@ -1,5 +1,5 @@
 {% for pr in ping_result.results %}
 Host = {{ pr.item  }}
-{{ pr.stdout_lines[1] }}
+times = {{ pr.stdout_lines | regex_replace('^t.*=(.*)$', '\\1') }}
 
 {% endfor %}
