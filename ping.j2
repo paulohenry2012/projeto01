@@ -1,3 +1,3 @@
 {% for pr in ping_result.results %}
-{{ pr.item  }} {{ pr.stdout_lines[1] | regex_search('time=([0-9].[0-9][0-9][0-9]+)') | regex_replace('^time=.^(.*)$', '\\1')  }}
+{{ pr.item  }} {{ pr.stdout_lines[1] | regex_search('time=([0-9].[0-9][0-9][0-9]+)') | regex_replace('time=')  }}
 {% endfor %}
