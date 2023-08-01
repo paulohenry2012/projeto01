@@ -14,7 +14,7 @@
       - name: How did we do?
         ansible.builtin.debug:
           msg: "{{ ping_result.results[0] }}"
-        run_once: true
+        #run_once: true
 
       - name: "Format it a bit"
         # Note: the docs for 'copy' say don't do this, to use template instead,
