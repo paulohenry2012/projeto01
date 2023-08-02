@@ -6,7 +6,7 @@
   tasks:
   
       - name: Ping each host
-        ansible.builtin.command: ping -c3 "{{ item }}"
+        ansible.builtin.command: ping -c1 "{{ item }}"
         run_once: true
         loop: "{{groups['host02']}}"
       #delegate_to: localhost
