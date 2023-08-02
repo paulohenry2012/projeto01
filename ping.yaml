@@ -2,7 +2,9 @@
 - name: check reachable hosts
   hosts: "{{groups['srv01']}}"
   gather_facts: no
+  
   tasks:
+  
       - name: Ping each host
         ansible.builtin.command: ping -c3 "{{ item }}"
         run_once: true
@@ -13,10 +15,11 @@
       
       - name: check connectivity over port 22
         ansible.builtin.wait_for:
-        host: "{{ item }}"
-        port: 22
-        timeout: 5
+          host: "{{ item }}"
+          port: 22
+          timeout: 5
         loop:  "{{groups['host02']}}"
+        run_once: true
         register: connection_out
       
       - name: How did we do?
