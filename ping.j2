@@ -1,6 +1,5 @@
 {% for pr in ping_result.results %} 
-{% for cr in connection_out.results %}
 {{ pr.item  }} {{ pr.stdout_lines[1] | regex_search('time=([0-9].[0-9][0-9][0-9]+)') | regex_replace('time=') }}
-{{ cr.item  }} 
-{{ cr.stdout_lines }}
+{{ connection_out.results.item  }} 
+{{ connection_out.results.stdout_lines }}
 {% endfor %}
