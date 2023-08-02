@@ -3,5 +3,5 @@
 {% endfor%}
 {% for cr in connection_out.results %}
 {{ cr.item  }} 
-{{ cr.stdout_lines }}
+{{ cr.stdout_lines[0] }}
 {% endfor%}
