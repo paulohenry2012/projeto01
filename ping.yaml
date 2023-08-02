@@ -11,10 +11,10 @@
         register: ping_result
         failed_when: false
       
-      - name: check connectivity over port "{{ port_number }}"
+      - name: check connectivity over port 22
         ansible.builtin.wait_for:
         host: "{{ item }}"
-        port: 1433
+        port: 22
         timeout: 5
         loop:  "{{ target_hosts }}"
         register: connection_out
