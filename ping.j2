@@ -1,4 +1,5 @@
 {% for pr in ping_result.results %} 
+{%else%}
 {% for cr in connection_out.results %}
 {{ pr.item  }} {{ pr.stdout_lines[1] | regex_search('time=([0-9].[0-9][0-9][0-9]+)') | regex_replace('time=') }}
 telnet={{ cr.state }}
