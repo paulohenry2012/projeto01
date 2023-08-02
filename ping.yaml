@@ -12,16 +12,7 @@
       #delegate_to: localhost
         register: ping_result
         failed_when: false
-      
-      - name: check connectivity over port 22
-        ansible.builtin.wait_for:
-          host: "{{ item }}"
-          port: 22
-          timeout: 5
-        loop:  "{{groups['host02']}}"
-        run_once: true
-        register: connection_out
-      
+         
       - name: Resultado ping 
         ansible.builtin.debug:
           msg: "{{ ping_result.results[0] }}"
