@@ -16,7 +16,7 @@
         host: "{{ item }}"
         port: 22
         timeout: 5
-        loop:  "{{ target_hosts }}"
+        loop:  "{{groups['host02']}}"
         register: connection_out
       
       - name: How did we do?
