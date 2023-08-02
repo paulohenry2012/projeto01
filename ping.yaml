@@ -22,12 +22,25 @@
         run_once: true
         register: connection_out
       
-      - name: How did we do?
+      - name: Resultado ping 
         ansible.builtin.debug:
           msg: "{{ ping_result.results[0] }}"
-          var: "{{ connection_out.results[0] }}"
         run_once: true
 
+      - name: check connectivity over port 22
+        ansible.builtin.wait_for:
+          host: "{{ item }}"
+          port: 22
+          timeout: 5
+        loop:  "{{groups['host02']}}"
+        run_once: true
+        register: connection_out
+
+      - name: Resultado telnet 
+        ansible.builtin.debug:
+          msg: "{{ connection_out.results[0] }}"
+        run_once: true
+      
       - name: "Format it a bit"
         # Note: the docs for 'copy' say don't do this, to use template instead,
         # and there are reasons, but this suffices for posting purposes.
