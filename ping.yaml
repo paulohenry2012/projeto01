@@ -10,11 +10,20 @@
       #delegate_to: localhost
         register: ping_result
         failed_when: false
-
+      
+      - name: check connectivity over port "{{ port_number }}"
+        ansible.builtin.wait_for:
+        host: "{{ item }}"
+        port: 1433
+        timeout: 5
+        loop:  "{{ target_hosts }}"
+        register: connection_out
+      
       - name: How did we do?
         ansible.builtin.debug:
           msg: "{{ ping_result.results[0] }}"
-        #run_once: true
+          msg1: "{{ connection_out.results [0] }}"
+        run_once: true
 
       - name: "Format it a bit"
         # Note: the docs for 'copy' say don't do this, to use template instead,
