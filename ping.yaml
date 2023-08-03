@@ -8,14 +8,15 @@
 
   tasks:
       - name: "Teste de conectividade"
-        telnet:    
-          hosts: "{{ item }}"
-          port: "{{ port }}"
-        prompts:
-          - "[>#]"
         commands:
-          - terminal length 0
-          - show version
+          telnet:    
+            hosts: "{{ item }}"
+            port: "{{ port }}"
+          prompts:
+            - "[>#]"
+          commands:
+            - terminal length 0
+            - show version
         loop: "{{groups['host02']}}"
         run_once: true
         changed_when: false 
