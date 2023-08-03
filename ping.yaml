@@ -4,7 +4,7 @@
   gather_facts: no
   
   vars: 
-    port: 1433
+    port: 22
 
   tasks:
       - name: "Teste de conectividade"
