@@ -1,6 +1,6 @@
 ---
 - name: check reachable hosts
-  hosts: "{{groups['srv1']}}"
+  hosts: "{{groups['srv01']}}"
   gather_facts: no
   
   vars: 
