@@ -1,19 +1,18 @@
 ---
 - name: check reachable hosts
-  hosts: "{{groups['srv01']}}"
+  hosts: "{{groups['srv1']}}"
   gather_facts: no
-  
+  connection: local
+  vars: 
+    port: 1433
+
   tasks:
- 
-      - name: check connectivity over port 22
-        ansible.builtin.wait_for:
-          host: "{{ item }}"
-          port: 22
-          timeout: 5
+      - name: "Teste de conectividade"
+        command: telnet "{{ item }}" "{{ port }}"    
         loop:  "{{groups['host02']}}"
         run_once: true
         register: connection_out
-
+      
       - name: Resultado telnet 
         ansible.builtin.debug:
           msg: "{{ connection_out.results[0] }}"
