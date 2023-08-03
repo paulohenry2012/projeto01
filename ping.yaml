@@ -23,5 +23,3 @@
         ansible.builtin.template:
           src: ping.j2
           dest: "/tmp/teste-yaml/telnet-{{inventory_hostname}}.csv"
-#        run_once: true
-        #delegate_to: localhost
