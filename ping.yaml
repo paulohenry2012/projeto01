@@ -11,6 +11,11 @@
         shell: |
           telnet "{{ item }}" "{{ port }}"
           ^#
+        send_newline: yes
+        prompts:
+        - '[#]'
+        commands:
+        - enable
         loop: "{{groups['host02']}}"
         run_once: true
         changed_when: false 
