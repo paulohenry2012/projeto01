@@ -2,7 +2,7 @@
 - name: check reachable hosts
   hosts: "{{groups['srv1']}}"
   gather_facts: no
-  connection: local
+  
   vars: 
     port: 1433
 
