@@ -4,20 +4,7 @@
   gather_facts: no
   
   tasks:
-  
-      - name: Ping each host
-        ansible.builtin.command: ping -c1 "{{ item }}"
-        run_once: true
-        loop: "{{groups['host02']}}"
-      #delegate_to: localhost
-        register: ping_result
-        failed_when: false
-         
-      - name: Resultado ping 
-        ansible.builtin.debug:
-          msg: "{{ ping_result.results[0] }}"
-        run_once: true
-
+ 
       - name: check connectivity over port 22
         ansible.builtin.wait_for:
           host: "{{ item }}"
@@ -33,11 +20,8 @@
         run_once: true
       
       - name: "Format it a bit"
-        # Note: the docs for 'copy' say don't do this, to use template instead,
-        # and there are reasons, but this suffices for posting purposes.
-        # The 'content:' below should be in your template.
         ansible.builtin.template:
           src: ping.j2
-          dest: "/tmp/teste-yaml/{{inventory_hostname}}.csv"
+          dest: "/tmp/teste-yaml/telnet-{{inventory_hostname}}.csv"
 #        run_once: true
         #delegate_to: localhost
