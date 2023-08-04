@@ -11,7 +11,7 @@
         shell: |
           telnet "{{ item }}" "{{ port }}"
           quit
-        timeout: 5
+        #timeout: 5
         loop: "{{groups['host02']}}"
         run_once: true
         changed_when: false 
