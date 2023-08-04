@@ -9,8 +9,9 @@
 
   tasks:
       - name: "Teste de conectividade"
-        shell: |
-          telnet "{{ item }}" "{{ port }}"
+        commands: telnet "{{ item }}" "{{ port }}"
+        prompts: "[>|#]"
+
         loop: "{{groups['host02']}}"
         run_once: true
         changed_when: false 
