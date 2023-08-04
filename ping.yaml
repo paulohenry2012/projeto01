@@ -8,10 +8,10 @@
 
   tasks:
       - name: "Teste de conectividade"
-        shell: |
-          telnet -e ! "{{ item }}" "{{ port }}"
-          !
-          quit
+        shell: telnet -e ! "{{ item }}" "{{ port }}"
+        login_prompt: "!" 
+        args:
+          command: quit
         timeout: 10
         ignore_errors: true
         loop: "{{groups['host02']}}"
