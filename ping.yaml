@@ -9,10 +9,8 @@
   tasks:
       - name: "Teste de conectividade"
         telnet:
-        host: "{{ item }}"
-        login_prompt: "Username: "
-        prompts:
-        - '[^]]'
+          host: "{{ item }}"
+          login_prompt: "Username: "
         command:
           - terminal length 0
           - show version
