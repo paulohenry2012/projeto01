@@ -9,6 +9,7 @@
   tasks:
       - name: "Teste de conectividade"
         shell: |
+          set timeout 10
           telnet "{{ item }}" "{{ port }}"
           ^]
           quit
