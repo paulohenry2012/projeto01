@@ -19,7 +19,7 @@
       
       - name: Resultado telnet 
         ansible.builtin.debug:
-          msg: "{{ connection_out.sdout_lines[0] }}"
+          msg: "{{ connection_out.stdout_lines[0] }}"
       #  run_once: true
       
       - name: "Format it a bit"
