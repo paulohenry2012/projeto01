@@ -8,14 +8,7 @@
 
   tasks:
       - name: "Teste de conectividade"
-        telnet:
-          host: "{{ item }}"
-          login_prompt: "Username: "
-        command:
-          - terminal length 0
-          - show version
-        delay: 3
-        timeout: 90
+        command: echo -e '\035\nquit' | telnet "{{ item }}" "{{ port }}"
         ignore_errors: true
         loop: "{{groups['host02']}}"
         #changed_when: false 
