@@ -8,7 +8,7 @@
 
   tasks:
       - name: "Teste de conectividade"
-        command: |
+        shell: |
           echo -e '\035\nquit' | telnet "{{ item }}" "{{ port }}" && echo "success" || echo "failed"
         ignore_errors: true
         loop: "{{groups['host02']}}"
