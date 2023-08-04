@@ -9,9 +9,8 @@
   tasks:
       - name: "Teste de conectividade"
         shell: |
-          set timeout 5
           telnet "{{ item }}" "{{ port }}"
-
+          quit
         timeout: 5
         loop: "{{groups['host02']}}"
         run_once: true
