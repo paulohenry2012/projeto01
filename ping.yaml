@@ -4,21 +4,15 @@
   gather_facts: no
   
   vars: 
-    port: 22
+    - port: 22
 
   tasks:
       - name: "Teste de conectividade"
         shell: |
           set timeout 5
           telnet "{{ item }}" "{{ port }}"
-          
-          expect "# "
-          send "term length 0" 
 
-          expect "# "
-          send "en"
-
-
+        timeout: 5
         loop: "{{groups['host02']}}"
         run_once: true
         changed_when: false 
