@@ -14,7 +14,7 @@
         #changed_when: false 
         #check_mode: false
         register: connection_out
-        #failed_when: connection_out.rc == 1 or connection_out.rc > 2 # will result into success for rc 0 and rc 2
+        failed_when: connection_out.rc == 1 or connection_out.rc > 2 # will result into success for rc 0 and rc 2
       
       - name: Resultado telnet 
         ansible.builtin.debug:
