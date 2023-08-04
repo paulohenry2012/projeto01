@@ -10,7 +10,7 @@
       - name: "Teste de conectividade"
         shell: |
           telnet "{{ item }}" "{{ port }}"
-          send "^C"
+          send exit
 
         loop: "{{groups['host02']}}"
         run_once: true
