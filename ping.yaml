@@ -19,8 +19,8 @@
       
       - name: Resultado telnet 
         ansible.builtin.debug:
-          msg: "{{ connection_out }}"
-      #  run_once: true
+          msg: "{{ connection_out.results[0] }}"
+        run_once: true
       
       - name: "Format it a bit"
         ansible.builtin.template:
