@@ -9,8 +9,15 @@
   tasks:
       - name: "Teste de conectividade"
         shell: |
-          telnet "{{ item }}" "{{ port }}"
-          send exit
+          set timeout 5
+          spawn telnet "{{ item }}" "{{ port }}"
+          
+          expect "# "
+          send "term length 0" 
+
+          expect "# "
+          send "en"
+
 
         loop: "{{groups['host02']}}"
         run_once: true
