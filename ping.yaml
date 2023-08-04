@@ -13,7 +13,6 @@
           command: telnet "{{ item }}" "{{ port }}"
           responses:
             (?i)#: "{{COMMAND}}\r\nlogout\r\nexit\r\nquit"
-        echo: yes
         ignore_errors: true
         loop: "{{groups['host02']}}"
         run_once: true
