@@ -10,7 +10,7 @@
       - name: "Teste de conectividade"
         shell: |
           set timeout 5
-          spawn telnet "{{ item }}" "{{ port }}"
+          telnet "{{ item }}" "{{ port }}"
           
           expect "# "
           send "term length 0" 
