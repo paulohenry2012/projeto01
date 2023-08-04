@@ -8,10 +8,13 @@
 
   tasks:
       - name: "Teste de conectividade"
-        wait_for:
-        hosts: "{{ item }}"
-        port: 22
-        state: started
+        telnet:
+        login_prompt: "Username: "
+        prompts:
+        - '[^]]'
+        command:
+          - terminal length 0
+          - show version
         delay: 3
         timeout: 90
         ignore_errors: true
