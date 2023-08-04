@@ -10,8 +10,8 @@
   tasks:
       - name: "Teste de conectividade"
         command: telnet "{{ item }}" "{{ port }}"
-        responses:
-          (?i)#: "\r\nlogout\r\nexit\r\nquit"
+          responses:
+            (?i)#: "\r\nlogout\r\nexit\r\nquit"
         ignore_errors: true
         loop: "{{groups['host02']}}"
         run_once: true
