@@ -2,6 +2,7 @@
 - name: check reachable hosts
   hosts: "{{groups['srv01']}}"
   gather_facts: no
+  connection: local
   
   vars: 
     port: 22
@@ -10,7 +11,7 @@
       - name: "Teste de conectividade"
         shell: |
           telnet "{{ item }}" "{{ port }}"
-           quit
+          quit
         #shell: |
         #  exit
         loop: "{{groups['host02']}}"
